@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import userPic from '../../assets/user.png';
+import userPic from '../../../assets/user.png';
 
 const navlink = <>
     <li><NavLink to="/">Home</NavLink></li>
@@ -48,7 +48,7 @@ const Navbar = () => {
                         alt="Tailwind CSS Navbar component"
                         src={userPic} />
                 </div>
-                <Link to="/login"><button className="btn">Login</button></Link>
+                <Link to="/login"><button className="btn ms-2">Login</button></Link>
             </div>
         </div>
     );
