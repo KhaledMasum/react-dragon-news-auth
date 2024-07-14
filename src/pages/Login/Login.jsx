@@ -1,9 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider/AuthProvider";
 
 const Login = () => {
+    const { signInUser } = useContext(AuthContext);
+
+    const location = useLocation();
+    console.log(location);
+    const navigate = useNavigate();
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        const form = new FormData(e.currentTarget);
+        const email = form.get('email');
+        const password = form.get('password');
+        signInUser(email, password)
+            .then((userCredential) => {
+                console.log(userCredential.user);
+                navigate(location?.state ? location.state : '/');
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.error(errorMessage);
+            });
     }
 
     return (
